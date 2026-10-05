@@ -1,0 +1,7 @@
+ok - an lsof listing is a live holder (0)
+ok - lsof exit 1 with empty output is provably none (1)
+ok - an lsof error is cannot-tell (2) with the diagnostic logged
+ok - an lsof call that outlives the bound is cannot-tell (2), never provably none, and is logged
+ok - a timed-out lsof makes fm_lock_has_live_holder assume a live holder (fail safe)
+ok - lsof runs under a 60 s bound by default when timeout exists
+ok - without timeout, gtimeout, or perl the bound still holds through the bash fallback, and lsof runs without -b

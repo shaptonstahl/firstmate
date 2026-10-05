@@ -1,0 +1,10 @@
+# Live fm_lock_is_provably_stale (THE proof) end to end with the real lsof and real timeout, Mon Oct  5 01:18:18 AM EDT 2026
+## A. live holder (lock open on fd 3, cwd in dir) -> must be NOT stale (non-zero)
+fm_lock_is_provably_stale -> 1
+## B. holder killed, age >= 0 -> must be provably stale (0): stale-lock recovery still works under the bound
+fm_lock_is_provably_stale -> 0
+## C. stalled lsof (SIGSTOP'd wrapper), bound 2 s -> must refuse (non-zero), never 'provably stale', within seconds
+fm-lock: lsof check timed out after 2s for /tmp/fm-locklive.yTcUQT/lock; cannot tell whether it is held
+fm_lock_is_provably_stale -> 1
+elapsed=2s (two bounded lsof calls: lock then dir)
+no stalled lsof left behind

@@ -1,0 +1,26 @@
+# Live host comparison of the teardown cwd scan, wildrobot, Mon Oct  5 01:16:49 AM EDT 2026
+# cifs mount present:
+//10.251.181.156/home on /mnt/miracle/steve/home type cifs (rw,relatime,vers=3.1.1,cache=strict,upcall_target=app,username=steve,domain=WORKGROUP,uid=1000,forceuid,gid=1000,forcegid,addr=10.251.181.156,file_mode=0755,dir_mode=0755,soft,nounix,serverino,mapposix,reparse=nfs,nativesocket,symlink=native,rsize=4194304,wsize=4194304,bsize=1048576,echo_interval=15,actimeo=30,closetimeo=1,x-systemd.automount,_netdev,x-systemd.idle-timeout=60,x-systemd.mount-timeout=5s)
+# leaked sleeper pid=1384743 cwd=/tmp/fm-cwdscan.59Jv1Y
+## plain: lsof -a -d cwd -Fpn
+exit=0 elapsed=.245508166s
+## new: lsof -b -w -a -d cwd -Fpn
+exit=0 elapsed=.156057592s
+## pids with cwd under /tmp/fm-cwdscan.59Jv1Y, plain vs new:
+1384743  <- plain
+1384743  <- new
+## full pid->cwd records, uid-readable, plain vs new (diff; empty = identical):
+68,70c68,74
+< 1384857 /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M4566WZTSQJDS2PDG4SSHQ26
+< 1384858 /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M4566WZTSQJDS2PDG4SSHQ26
+< 1384859 /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M4566WZTSQJDS2PDG4SSHQ26
+---
+> 1384976 /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M4566WZTSQJDS2PDG4SSHQ26
+> 1384997 /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M4566WZTSQJDS2PDG4SSHQ26
+> 1384998 /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M4566WZTSQJDS2PDG4SSHQ26
+> 1384999 /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M4566WZTSQJDS2PDG4SSHQ26
+> 1385004 /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M4566WZTSQJDS2PDG4SSHQ26
+> 1385028 /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M4566WZTSQJDS2PDG4SSHQ26
+> 1385029 /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M4566WZTSQJDS2PDG4SSHQ26
+## warning records (n field is a diagnostic) plain vs new:
+plain: 445 new: 0

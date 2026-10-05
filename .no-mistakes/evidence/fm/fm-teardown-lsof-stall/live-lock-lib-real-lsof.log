@@ -1,0 +1,245 @@
+# Live lock-lib holder checks with the real lsof (revision:4.95.0) and real coreutils timeout, Mon Oct  5 01:17:44 AM EDT 2026
+## 1. leaf-lib source alone (as fm-fleet-sync.sh / fm-afk-return.sh do): fm_run_timed becomes available
+fm_run_timed
+mechanism: timeout
+## 2. caller that already loaded fm-timeout-lib.sh (fm-teardown.sh order): no re-source, fm_run_timed identity preserved
+caller-marked fm_run_timed 5 true
+## 3. real holder: a process with the lock open on fd 3 and cwd in dir
+fm_lock_lsof_holder lock -> 0
+fm_lock_lsof_holder dir(cwd) -> 0
+_: line 1: fm_lock_is_stale: command not found
+fm_lock_is_stale -> 127 (1 = not stale, holder live)
+## 4. holder gone: same lock file, nobody holds it, mtime age >= 0
+fm_lock_lsof_holder lock -> 1 (1 = provably none)
+_: line 1: fm_lock_is_stale: command not found
+fm_lock_is_stale -> 127 (0 = stale, recoverable)
+## 5. adversarial: the same real lsof with -b on a path argument (why the lib must NOT use -b)
+lsof: avoiding readlink(/tmp/fm-locklive.LwOTwv/lock): -b was specified.
+lsof: avoiding readlink(/sys): -b was specified.
+lsof: avoiding stat(/sys): -b was specified.
+lsof: WARNING: can't stat() sysfs file system /sys
+      Output information may be incomplete.
+lsof: avoiding readlink(/proc): -b was specified.
+lsof: avoiding stat(/proc): -b was specified.
+lsof: WARNING: can't stat() proc file system /proc
+      Output information may be incomplete.
+lsof: avoiding readlink(/dev): -b was specified.
+lsof: avoiding stat(/dev): -b was specified.
+lsof: WARNING: can't stat() devtmpfs file system /dev
+      Output information may be incomplete.
+lsof: avoiding readlink(/dev/pts): -b was specified.
+lsof: avoiding stat(/dev/pts): -b was specified.
+lsof: WARNING: can't stat() devpts file system /dev/pts
+      Output information may be incomplete.
+lsof: avoiding readlink(/run): -b was specified.
+lsof: avoiding stat(/run): -b was specified.
+lsof: WARNING: can't stat() tmpfs file system /run
+      Output information may be incomplete.
+lsof: avoiding readlink(/): -b was specified.
+lsof: avoiding stat(/): -b was specified.
+lsof: WARNING: can't stat() ext4 file system /
+      Output information may be incomplete.
+lsof: avoiding readlink(/sys/kernel/security): -b was specified.
+lsof: avoiding stat(/sys/kernel/security): -b was specified.
+lsof: WARNING: can't stat() securityfs file system /sys/kernel/security
+      Output information may be incomplete.
+lsof: avoiding readlink(/dev/shm): -b was specified.
+lsof: avoiding stat(/dev/shm): -b was specified.
+lsof: WARNING: can't stat() tmpfs file system /dev/shm
+      Output information may be incomplete.
+lsof: avoiding readlink(/run/lock): -b was specified.
+lsof: avoiding stat(/run/lock): -b was specified.
+lsof: WARNING: can't stat() tmpfs file system /run/lock
+      Output information may be incomplete.
+lsof: avoiding readlink(/sys/fs/cgroup): -b was specified.
+lsof: avoiding stat(/sys/fs/cgroup): -b was specified.
+lsof: WARNING: can't stat() cgroup2 file system /sys/fs/cgroup
+      Output information may be incomplete.
+lsof: avoiding readlink(/sys/fs/pstore): -b was specified.
+lsof: avoiding stat(/sys/fs/pstore): -b was specified.
+lsof: WARNING: can't stat() pstore file system /sys/fs/pstore
+      Output information may be incomplete.
+lsof: avoiding readlink(/sys/firmware/efi/efivars): -b was specified.
+lsof: avoiding stat(/sys/firmware/efi/efivars): -b was specified.
+lsof: WARNING: can't stat() efivarfs file system /sys/firmware/efi/efivars
+      Output information may be incomplete.
+lsof: avoiding readlink(/sys/fs/bpf): -b was specified.
+lsof: avoiding stat(/sys/fs/bpf): -b was specified.
+lsof: WARNING: can't stat() bpf file system /sys/fs/bpf
+      Output information may be incomplete.
+lsof: avoiding readlink(/dev/mqueue): -b was specified.
+lsof: avoiding stat(/dev/mqueue): -b was specified.
+lsof: WARNING: can't stat() mqueue file system /dev/mqueue
+      Output information may be incomplete.
+lsof: avoiding readlink(/dev/hugepages): -b was specified.
+lsof: avoiding stat(/dev/hugepages): -b was specified.
+lsof: WARNING: can't stat() hugetlbfs file system /dev/hugepages
+      Output information may be incomplete.
+lsof: avoiding readlink(/sys/kernel/tracing): -b was specified.
+lsof: avoiding stat(/sys/kernel/tracing): -b was specified.
+lsof: WARNING: can't stat() tracefs file system /sys/kernel/tracing
+      Output information may be incomplete.
+lsof: avoiding readlink(/sys/kernel/debug): -b was specified.
+lsof: avoiding stat(/sys/kernel/debug): -b was specified.
+lsof: WARNING: can't stat() debugfs file system /sys/kernel/debug
+      Output information may be incomplete.
+lsof: avoiding readlink(/sys/fs/fuse/connections): -b was specified.
+lsof: avoiding stat(/sys/fs/fuse/connections): -b was specified.
+lsof: WARNING: can't stat() fusectl file system /sys/fs/fuse/connections
+      Output information may be incomplete.
+lsof: avoiding readlink(/sys/kernel/config): -b was specified.
+lsof: avoiding stat(/sys/kernel/config): -b was specified.
+lsof: WARNING: can't stat() configfs file system /sys/kernel/config
+      Output information may be incomplete.
+lsof: avoiding readlink(/run/qemu): -b was specified.
+lsof: avoiding stat(/run/qemu): -b was specified.
+lsof: WARNING: can't stat() tmpfs file system /run/qemu
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/bare/5): -b was specified.
+lsof: avoiding stat(/snap/bare/5): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/bare/5
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/core18/3084): -b was specified.
+lsof: avoiding stat(/snap/core18/3084): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/core18/3084
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/core18/2999): -b was specified.
+lsof: avoiding stat(/snap/core18/2999): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/core18/2999
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/core20/2866): -b was specified.
+lsof: avoiding stat(/snap/core20/2866): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/core20/2866
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/core20/2922): -b was specified.
+lsof: avoiding stat(/snap/core20/2922): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/core20/2922
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/core24/2124): -b was specified.
+lsof: avoiding stat(/snap/core24/2124): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/core24/2124
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/core24/1643): -b was specified.
+lsof: avoiding stat(/snap/core24/1643): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/core24/1643
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/docker/3579): -b was specified.
+lsof: avoiding stat(/snap/docker/3579): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/docker/3579
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/docker/3613): -b was specified.
+lsof: avoiding stat(/snap/docker/3613): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/docker/3613
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/gnome-3-28-1804/198): -b was specified.
+lsof: avoiding stat(/snap/gnome-3-28-1804/198): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/gnome-3-28-1804/198
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/gnome-46-2404/164): -b was specified.
+lsof: avoiding stat(/snap/gnome-46-2404/164): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/gnome-46-2404/164
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/gnome-46-2404/168): -b was specified.
+lsof: avoiding stat(/snap/gnome-46-2404/168): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/gnome-46-2404/168
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/gnome-system-monitor/193): -b was specified.
+lsof: avoiding stat(/snap/gnome-system-monitor/193): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/gnome-system-monitor/193
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/gtk-common-themes/1535): -b was specified.
+lsof: avoiding stat(/snap/gtk-common-themes/1535): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/gtk-common-themes/1535
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/hugo/26485): -b was specified.
+lsof: avoiding stat(/snap/hugo/26485): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/hugo/26485
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/hugo/26394): -b was specified.
+lsof: avoiding stat(/snap/hugo/26394): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/hugo/26394
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/mesa-2404/1839): -b was specified.
+lsof: avoiding stat(/snap/mesa-2404/1839): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/mesa-2404/1839
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/snapd/27738): -b was specified.
+lsof: avoiding stat(/snap/snapd/27738): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/snapd/27738
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/snapd/28254): -b was specified.
+lsof: avoiding stat(/snap/snapd/28254): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/snapd/28254
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/thunderbird/1274): -b was specified.
+lsof: avoiding stat(/snap/thunderbird/1274): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/thunderbird/1274
+      Output information may be incomplete.
+lsof: avoiding readlink(/boot/efi): -b was specified.
+lsof: avoiding stat(/boot/efi): -b was specified.
+lsof: WARNING: can't stat() vfat file system /boot/efi
+      Output information may be incomplete.
+lsof: avoiding readlink(/proc/sys/fs/binfmt_misc): -b was specified.
+lsof: avoiding stat(/proc/sys/fs/binfmt_misc): -b was specified.
+lsof: WARNING: can't stat() binfmt_misc file system /proc/sys/fs/binfmt_misc
+      Output information may be incomplete.
+lsof: avoiding readlink(/run/user/1000): -b was specified.
+lsof: avoiding stat(/run/user/1000): -b was specified.
+lsof: WARNING: can't stat() tmpfs file system /run/user/1000
+      Output information may be incomplete.
+lsof: avoiding readlink(/run/snapd/ns): -b was specified.
+lsof: avoiding stat(/run/snapd/ns): -b was specified.
+lsof: WARNING: can't stat() tmpfs file system /run/snapd/ns
+      Output information may be incomplete.
+lsof: avoiding readlink(/run/snapd/ns/docker.mnt): -b was specified.
+lsof: avoiding stat(/run/snapd/ns/docker.mnt): -b was specified.
+lsof: WARNING: can't stat() nsfs file system /run/snapd/ns/docker.mnt
+      Output information may be incomplete.
+lsof: avoiding readlink(/run/user/1000/gvfs): -b was specified.
+lsof: avoiding stat(/run/user/1000/gvfs): -b was specified.
+lsof: WARNING: can't stat() fuse.gvfsd-fuse file system /run/user/1000/gvfs
+      Output information may be incomplete.
+lsof: avoiding readlink(/run/user/1000/doc): -b was specified.
+lsof: avoiding stat(/run/user/1000/doc): -b was specified.
+lsof: WARNING: can't stat() fuse.portal file system /run/user/1000/doc
+      Output information may be incomplete.
+lsof: avoiding readlink(/tmp/.mount_Handy_NiKKaH): -b was specified.
+lsof: avoiding stat(/tmp/.mount_Handy_NiKKaH): -b was specified.
+lsof: WARNING: can't stat() fuse.Handy_0.9.4_amd64_e8c8871683c9b2c4051f504aba6c4663.AppImage file system /tmp/.mount_Handy_NiKKaH
+      Output information may be incomplete.
+lsof: avoiding readlink(/tmp/.mount_ObsidiCnjt0s): -b was specified.
+lsof: avoiding stat(/tmp/.mount_ObsidiCnjt0s): -b was specified.
+lsof: WARNING: can't stat() fuse.Obsidian-1.11.7_0225e3315fc94005857bf03791a005cb.AppImage file system /tmp/.mount_ObsidiCnjt0s
+      Output information may be incomplete.
+lsof: avoiding readlink(/snap/thunderbird/1279): -b was specified.
+lsof: avoiding stat(/snap/thunderbird/1279): -b was specified.
+lsof: WARNING: can't stat() squashfs file system /snap/thunderbird/1279
+      Output information may be incomplete.
+lsof: avoiding readlink(/run/snapd/ns/thunderbird.mnt): -b was specified.
+lsof: avoiding stat(/run/snapd/ns/thunderbird.mnt): -b was specified.
+lsof: WARNING: can't stat() nsfs file system /run/snapd/ns/thunderbird.mnt
+      Output information may be incomplete.
+lsof: avoiding readlink(/media/stephen/external_backup): -b was specified.
+lsof: avoiding stat(/media/stephen/external_backup): -b was specified.
+lsof: WARNING: can't stat() btrfs file system /media/stephen/external_backup
+      Output information may be incomplete.
+lsof: avoiding readlink(/mnt/miracle/steve/home): -b was specified.
+lsof: avoiding stat(/mnt/miracle/steve/home): -b was specified.
+lsof: WARNING: can't stat() cifs file system /mnt/miracle/steve/home
+      Output information may be incomplete.
+lsof: avoiding stat(/tmp/fm-locklive.LwOTwv/lock): -b was specified.
+lsof: status error on /tmp/fm-locklive.LwOTwv/lock: Resource temporarily unavailable
+lsof -b -- path exit=1
+## 6. adversarial: lsof stalled (SIGSTOP'd wrapper) under real timeout, bound 2s; must be cannot-tell (2) and fm_lock_is_stale must refuse (non-zero)
+mechanism: timeout
+fm-lock: lsof check timed out after 2s for /tmp/fm-locklive.LwOTwv/lock; cannot tell whether it is held
+fm_lock_lsof_holder -> 2
+_: line 1: fm_lock_is_stale: command not found
+fm_lock_is_stale -> 127 (non-zero = lock preserved)
+elapsed=2s
+## 7. same stall with FM_TIMEOUT_MECHANISM_OVERRIDE=bash (no timeout tool path)
+mechanism: bash
+fm-lock: lsof check timed out after 2s for /tmp/fm-locklive.LwOTwv/lock; cannot tell whether it is held
+fm_lock_lsof_holder -> 2
+elapsed=2s
+no stalled lsof left behind
