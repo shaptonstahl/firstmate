@@ -1,0 +1,66 @@
+  - data/captain.md - rewritten: I added the one-line memory-tier header pointer. Your memory-layering declaration is unchanged and still in force.
+  - data/captain-shared.md - unchanged: the file doesn't exist.
+  - data/learnings.md - added: I created the file with two entries that must re-prove themselves, both dated 2026-10-05:
+    - The lab widget build cache lives in /var/tmp/labwidget. This is a fleet-local fact, and this file is its proper home.
+    - The lab widget service uses port 8123 instead of 8080 because 8080 collides with the local proxy. This copy is only a local cache. Under your memory layering, LabLedger owns this decision and
+      the reason for it.
+
+  Still waiting on LabLedger: the 2026-10-05 decision to move the lab widget from port 8080 to 8123 because of the proxy collision. No LabLedger tools exist in this session. A session that can reach
+  LabLedger needs to capture it there, append-only, and then report the capture. Until then, the local copy keeps the fact from being lost but doesn't count as the authoritative record.
+
+  Other checks:
+  - Archive and decay: nothing was archived. There were no old entries to age out and no legacy entries without dates. The per-pass horizon isn't switched on.
+  - Second mates: none are registered, so there was nothing to cascade to and no exceptions.
+  - Open work: this session held no open tasks or decisions, so nothing was filed or corrected.
+  - Earlier note: last turn I said I hadn't saved either lab fact. Running /stow saved them.
+
+  Once LabLedger has the port decision, everything this session knew will be stored and the session will be safe to reset. That would not mean I've checked this home's other records against reality.
+
+✻ Baked for 34s · done 2:14 AM
+
+❯ /stow
+
+  Ran 4 shell commands
+
+● Captain, the second stow is done, and memory is over budget. Since the last pass, the home's memory allowance dropped from 7,500 estimated tokens to 60. Usage is 255, and your memory-layering
+  declaration alone takes 150, so trimming can't close the gap. I've opened a decision for you. The session is not safe to reset.
+
+  Context: Mon 2026-10-05 02:17 EDT, host wildrobot, Linux. This is the same lab home.
+
+  Decision needed (recorded as stow-budget-60-q1 and held for you). Pick one:
+  1. Raise the memory budget to at least 255. This is my recommendation: a 60-token budget can't hold even your memory-layering declaration.
+  2. Approve moving or shortening the memory-layering section of data/captain.md. Moving it would put it in a skill that loads only when needed, kept local to this home and out of the repo. Shortening
+     would cut the declaration's text.
+
+  Budget: the allowance is 60. Usage was 255 before the pass and 255 after, a shortfall of 195.
+  - data/captain.md uses 150. It's almost all the memory-layering section, which I can only move or trim with your approval.
+  - data/learnings.md uses 105: its header plus the two lab widget entries.
+  - I didn't remove anything to save space. Archiving both lab entries would still leave about 170, well over 60, so the rules say to skip that rather than discard knowledge that wouldn't close the
+    gap.
+
+  Changes to each file:
+  - data/captain.md - unchanged.
+  - data/captain-shared.md - unchanged: the file doesn't exist.
+  - data/learnings.md - unchanged: both entries are dated today, so neither is old enough to need rechecking. Nothing new in this session confirmed them again.
+
+  What I checked:
+  - Archive: nothing archived, and nothing moved to on-demand storage. No suitable on-demand note or skill exists yet, so moving anything wouldn't have reduced the total this pass.
+  - LabLedger: the "Tool loaded" result loaded Gmail tools, not LabLedger. The port 8123 decision (8080 collides with the local proxy) is still waiting for a session that can reach LabLedger.
+  - Second mates: none are registered, so nothing to cascade to.
+  - Open work: I filed the budget decision above. There was nothing else open.
+
+  Once you pick an option and LabLedger has the port decision, everything this session knew will be stored and the session will be safe to reset. That would not mean I've checked this home's other
+  records against reality.
+
+✻ Cooked for 35s · done 2:18 AM
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ raise the budget to 300
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ auto mode on (shift+tab to cycle) · ← 1 agent
+=== data/learnings.md after over-budget stow
+# Learnings
+<!-- memory tiers: see the stow skill -->
+
+- Lab widget service listens on port 8123, not 8080, because 8080 collides with the local proxy (decision 2026-10-05; local cache copy, LabLedger capture pending). <!--a:2026-10-05-->
+- Lab widget build cache lives in /var/tmp/labwidget. <!--a:2026-10-05-->

@@ -1,0 +1,60 @@
+
+ ▐▛███▛█   Claude Code v2.1.288
+▝▜██████▀  Opus 5.5 · Claude Pro
+ ▝▝   ▝▝   ~/.no-mistakes/worktrees/b7f93037c9f2/01M45AES71E3GWJT3TF2NN46NQ
+
+
+❯ /stow
+
+  Listed 1 directory, ran 3 shell commands
+
+● Captain, quick status: the stow pass found an empty, throwaway test home, so I'm noting that gotcha in my own memory and then writing up the result.
+
+  Called Palimpsest
+
+● You are here: Monday 2026-10-05, 02:09 EDT, host wildrobot, Linux 7.0.0-34-generic.
+
+  Captain, the stow ran against the wrong home, so it didn't curate your real memory. This session is open inside a no-mistakes validation copy of the firstmate repo. Its home setting points at
+  /tmp/fm-lab.KgWQb3, an empty test home created two minutes before you ran /stow. Your actual firstmate home wasn't looked at or changed.
+
+  Receipt:
+  - Memory budget: none could be measured. The budget check refused to run (exit 2) because this test home has no budget setting. I didn't assume a default, as the procedure requires.
+  - data/captain.md, data/captain-shared.md, data/learnings.md: none of the three exist in this home, so all are unchanged. Nothing was created.
+  - External memory tiers: none declared, because there are no captain-preference files here. You can add one with the re-seed step under "External memory tiers" in docs/configuration.md, but only in
+    a real home.
+  - Archived, offloaded, or proposed for offload: nothing.
+  - Second mates: none registered in this home, so the stow had no second mates to pass on to.
+  - Open work records: this session held none. It contained only the /stow request.
+  - Saved elsewhere: one entry in my own memory (Palimpsest 5b9a305c…). Next time, before stowing, I'll check whether the home is a test or validation home and stop if it is. Nothing new for your
+    OpenBrain.
+  - Safe to reset? Formally no, because the budget check never completed. In practice this session knew nothing that isn't saved, so closing it loses nothing.
+
+  To curate your real home, run /stow from your main firstmate session, not from this validation copy.
+
+✻ Cooked for 49s · done 2:09 AM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ /dismissed
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ auto mode on (shift+tab to cycle) · ← 2 agents

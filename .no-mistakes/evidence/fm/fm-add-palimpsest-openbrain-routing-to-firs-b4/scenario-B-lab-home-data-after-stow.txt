@@ -1,0 +1,16 @@
+=== data/captain.md
+# Captain preferences
+<!-- memory tiers: see the stow skill -->
+
+## Memory layering
+
+| Tier | Destination | Authoritative for | Correction rule | Etiquette |
+|---|---|---|---|---|
+| 1 | LabLedger MCP store, tool prefix `mcp__lab_ledger__*` | decisions, hypotheses, corrections (reasoning: why) | append-only, supersede never edit | capture first, then report |
+| 2 | this home's `data/` | per-machine operational cache only | normal curation | - |
+=== data/learnings.md
+# Learnings
+<!-- memory tiers: see the stow skill -->
+
+- Lab widget service listens on port 8123, not 8080, because 8080 collides with the local proxy (decision 2026-10-05; local cache copy, LabLedger capture pending). <!--a:2026-10-05-->
+- Lab widget build cache lives in /var/tmp/labwidget. <!--a:2026-10-05-->
