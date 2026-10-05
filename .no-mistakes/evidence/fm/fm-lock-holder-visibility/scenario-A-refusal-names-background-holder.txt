@@ -1,0 +1,13 @@
+### Scenario A: a different Claude session (fake harness ancestry) tries to take the helm; lab home lock records the REAL background agent pid 1752047 / session a2079e76-f78a-4ed3-824f-b28c33f4657b
+$ bin/fm-lock.sh   # acquire, from inside another Claude session
+error: another live firstmate session holds the lock (pid 1752047, session a2079e76-f78a-4ed3-824f-b28c33f4657b); operate read-only until resolved
+lock holder: Claude Code background session "Miracle cron jobs dbdump and dbaudit" (id a2079e76, status idle, state blocked)
+lock holder: to end that session and free the lock, run: claude stop a2079e76 (its conversation is kept; claude attach a2079e76 resumes it)
+[exit 1]
+
+$ bin/fm-lock.sh status   # same asker
+lock: held by live harness pid 1752047 (another session; session a2079e76-f78a-4ed3-824f-b28c33f4657b)
+lock holder: Claude Code background session "Miracle cron jobs dbdump and dbaudit" (id a2079e76, status idle, state blocked)
+lock holder: to end that session and free the lock, run: claude stop a2079e76 (its conversation is kept; claude attach a2079e76 resumes it)
+
+lock file after refusal: 1752047 / a2079e76-f78a-4ed3-824f-b28c33f4657b

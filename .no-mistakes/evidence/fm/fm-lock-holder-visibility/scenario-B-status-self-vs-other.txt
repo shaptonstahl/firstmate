@@ -1,0 +1,14 @@
+### Scenario B: Claude session lab-self-0001 holds the lab lock (still alive)
+$ cat state/.lock state/.lock-session
+1762061
+lab-self-0001
+--- holder asks: bin/fm-lock.sh status
+lock acquired: harness pid 1762061
+lock: held by live harness pid 1762061 (this session; session lab-self-0001)
+--- a different Claude session (lab-other-0002) asks: bin/fm-lock.sh status
+lock: held by live harness pid 1762061 (another session; session lab-self-0001)
+lock holder: pid 1762061 is a live Claude Code process, but claude agents lists no session with that pid or the recorded session id, so no session can be named or stopped from here; it may be a background helper process rather than a session, and the lock still counts as held
+--- and tries to acquire:
+error: another live firstmate session holds the lock (pid 1762061, session lab-self-0001); operate read-only until resolved
+lock holder: pid 1762061 is a live Claude Code process, but claude agents lists no session with that pid or the recorded session id, so no session can be named or stopped from here; it may be a background helper process rather than a session, and the lock still counts as held
+[exit 1]

@@ -1,0 +1,41 @@
+### Scenario A (session start): fm-session-start.sh in a lab home whose lock is held by the real background agent
+
+================================================================================
+SESSION START - /tmp/fm-lab.PcPT3f
+================================================================================
+
+LOCK
+--------------------------------------------------------------------------------
+error: another live firstmate session holds the lock (pid 1752047, session a2079e76-f78a-4ed3-824f-b28c33f4657b); operate read-only until resolved
+lock holder: Claude Code background session "Miracle cron jobs dbdump and dbaudit" (id a2079e76, status idle, state blocked)
+lock holder: to end that session and free the lock, run: claude stop a2079e76 (its conversation is kept; claude attach a2079e76 resumes it)
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  READ-ONLY SESSION - FLEET LOCK OWNERSHIP WAS NOT VERIFIED
+●  error: another live firstmate session holds the lock (pid 1752047, session a2079e76-f78a-4ed3-824f-b28c33f4657b); operate read-only until resolved
+●  lock holder: Claude Code background session "Miracle cron jobs dbdump and dbaudit" (id a2079e76, status idle, state blocked)
+●  lock holder: to end that session and free the lock, run: claude stop a2079e76 (its conversation is kept; claude attach a2079e76 resumes it)
+●  Skipping every mutating step: stale Herdr child cleanup,
+●  secondmate convergence, secondmate liveness, pending remote handoff retry,
+●  X-mode artifacts, fleet sync, and wake-queue drain. Detect-only bootstrap
+●  diagnostics and the rest of this read-only-safe digest still ran below.
+●  Operate read-only until this resolves - do not spawn, steer, merge, or
+●  otherwise mutate fleet state from this session.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOOTSTRAP
+--------------------------------------------------------------------------------
+(silent - all good)
+
+WAKE QUEUE
+--------------------------------------------------------------------------------
+skipped (read-only session) - 0 record(s) remain queued because this session lacks verified fleet-lock ownership.
+================================================================================
+SUPERVISION OPERATING INSTRUCTIONS - primary harness: claude
+================================================================================
+Current state:
+- Lock: read-only; do not drain, arm, spawn, steer, merge, or repair fleet state here.
+- Away/quiet mode: inactive.
+- X mode: inactive; use the default watcher cadence.
+- Supervision host: on; it takes away-posture wakes and, where the dialog mirror is verified, eligible attended wakes itself, and hands the rest to you (protocol at the end of this block).
+- Ordinary wake: the Stop-owned auto-arm (bin/fm-claude-stop-autoarm.sh) already owns watcher continuity; drain and handle the wake, and do not arm another cycle yourself.
+

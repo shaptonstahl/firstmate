@@ -1,0 +1,4 @@
+### Scenario B (unknown): status asked from a plain shell (private tmux pane, no harness in ancestry); lock = real background agent
+lock: held by live harness pid 1752047 (owner unknown: no harness session in this process ancestry; session a2079e76-f78a-4ed3-824f-b28c33f4657b)
+lock holder: Claude Code background session "Miracle cron jobs dbdump and dbaudit" (id a2079e76, status idle, state blocked)
+lock holder: to end that session and free the lock, run: claude stop a2079e76 (its conversation is kept; claude attach a2079e76 resumes it)

@@ -1,0 +1,5 @@
+### Scenario A (interactive holder): lock records the real interactive session pid 782239
+error: another live firstmate session holds the lock (pid 782239, session 129e154b-2773-468b-b3fd-8686f255f369); operate read-only until resolved
+lock holder: Claude Code interactive session "Officer-of-the-deck status" (status idle)
+lock holder: to free the lock, exit that interactive session from its own terminal
+[exit 1]

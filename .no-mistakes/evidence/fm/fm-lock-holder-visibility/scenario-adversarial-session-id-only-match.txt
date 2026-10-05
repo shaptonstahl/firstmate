@@ -1,0 +1,6 @@
+### Adversarial (#3398-style wedge): lock pid 1764988 is a live, unlisted claude-named stray; recorded session id is the REAL background agent a2079e76
+error: another live firstmate session holds the lock (pid 1764988, session a2079e76-f78a-4ed3-824f-b28c33f4657b); operate read-only until resolved
+lock holder: Claude Code background session "Miracle cron jobs dbdump and dbaudit" (id a2079e76, status idle, state blocked)
+lock holder: matched by the recorded session id a2079e76-f78a-4ed3-824f-b28c33f4657b; that session is listed under pid 1752047, not the lock pid 1764988
+lock holder: stopping or exiting that session may not free the lock, because the lock pid 1764988 is not its listed process; the lock still counts as held
+[exit 1]

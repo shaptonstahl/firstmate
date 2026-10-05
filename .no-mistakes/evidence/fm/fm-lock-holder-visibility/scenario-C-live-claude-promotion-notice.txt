@@ -1,0 +1,38 @@
+### Scenario C: real Claude Code 2.1.288 (Claude Code) primary in a lab home (plain clone of target commit 5cb58d84); a live foreign holder (pid 1769287, session SID-PREVIOUS-HOLDER) held the lock at start, then exited mid-session
+
+--- SessionStart digest, lock banner (verbatim from stream-json hook_response):
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  READ-ONLY SESSION - FLEET LOCK OWNERSHIP WAS NOT VERIFIED
+●  error: another live firstmate session holds the lock (pid 1769287, session SID-PREVIOUS-HOLDER); operate read-only until resolved
+●  lock holder: pid 1769287 is a live Claude Code process, but claude agents lists no session with that pid or the recorded session id, so no session can be named or stopped from here; it may be a background helper process rather than a session, and the lock still counts as held
+●  Skipping every mutating step: stale Herdr child cleanup,
+●  secondmate convergence, secondmate liveness, pending remote handoff retry,
+
+--- user-side messages delivered to the model (tool results and Stop hook feedback):
+previous holder 1769287 has exited
+Stop hook feedback:
+[[ -z "${GROK_AGENT:-}${GROK_HOOK_EVENT:-}" ] || exit 0; exec "$CLAUDE_PROJECT_DIR"/bin/fm-turnend-guard.sh --claude]: ●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  TURN WOULD END BLIND - SUPERVISION IS OFF
+●  1 task(s) in flight, but no live watcher holds this home lock (last beat: never).
+●  The Stop-owned auto-arm did not claim this home either, so recovery is NOT already under way.
+●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Stop hook feedback:
+[[ -z "${GROK_AGENT:-}${GROK_HOOK_EVENT:-}" ] || exit 0; exec "$CLAUDE_PROJECT_DIR"/bin/fm-claude-stop-autoarm.sh]: firstmate watcher wake - one supervision event needs a handling turn now.
+stale: fixture-rapid-1
+Run bin/fm-wake-drain.sh first, handle the wake, then run its exact WAKE_ACK_REQUIRED --ack-through command. Until that post-handling acknowledgement, interruption leaves the wake durable for idempotent re-handling. This Stop hook owns watcher continuity: when the handling turn ends, the next needed cycle arms automatically - do NOT run bin/fm-watch-arm.sh after an ordinary wake.
+firstmate fleet lock: this session now holds this home's session lock (harness pid 1769297, Claude session fa222b10-7d56-4253-a81a-4669d8c2ebf4, which is this session's current id).
+Its Stop hook took the lock over automatically after the previous holder's process ended, so any read-only restriction from an earlier lock refusal in this session no longer applies; bin/fm-lock.sh status confirms ownership.
+
+stale: fixture-rapid drained
+
+--- model turns:
+[Bash] bin/fm-lab-wait-holder.sh
+CYCLE0
+[Bash] bin/fm-wake-drain.sh
+ACK
+
+--- occurrences of the promotion notice in the whole transcript: 1
+--- final lock: 1769297 / fa222b10-7d56-4253-a81a-4669d8c2ebf4; pending notice file present: no
+--- session id reported by claude init event: fa222b10-7d56-4253-a81a-4669d8c2ebf4
