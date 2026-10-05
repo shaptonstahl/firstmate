@@ -1,0 +1,41 @@
+== initial poll (real GitHub)
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh poll
+contribution-wake: check: contributions alpha 7a02128b2b4b92b7458c4ed5c9ae8829c5a6d82493376c96ea813d421fd7465c
+contributions: observation unavailable for https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/1
+[exit 0]
+gh calls touching deleted repo: 1
+$ jq -c .records[0]|{url,state:.observation.state,error} /tmp/fm-lab.32Y5q5/data/alpha/contributions.json
+{"url":"https://github.com/kunchenguid/firstmate/pull/6647","state":"merged","error":null}
+[exit 0]
+== acknowledge alpha pending signals (retire requires it)
+$ jq -c .records[0].pending|length /tmp/fm-lab.32Y5q5/data/alpha/contributions.json
+0
+[exit 0]
+== retire both: deleted-repo PR on gone, merged final PR on alpha
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh retire gone https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/1 captain repository deleted
+[exit 0]
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh retire alpha https://github.com/kunchenguid/firstmate/pull/6647 fleet retired final record for late-owner check
+[exit 0]
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh poll
+[exit 0]
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh poll
+[exit 0]
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh poll
+[exit 0]
+gh calls across 3 polls after retire: 0
+$ bash -c '/home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-bearings-snapshot.sh' --json | jq -c '.contributions | {known,checked,complete,proven_clear}'
+{"known":0,"checked":0,"complete":true,"proven_clear":true}
+[exit 0]
+== late owner beta links the same merged URL
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh poll
+[exit 0]
+gh calls for late-owner settle: 8
+$ jq -c .records[0]|{url,state:.observation.state,error,retired} /tmp/fm-lab.32Y5q5/data/beta/contributions.json
+{"url":"https://github.com/kunchenguid/firstmate/pull/6647","state":"merged","error":null,"retired":null}
+[exit 0]
+$ jq -c .records[0].retired /tmp/fm-lab.32Y5q5/data/alpha/contributions.json
+{"actor":"fleet","reason":"retired final record for late-owner check","at":"2026-10-05T19:01:01Z"}
+[exit 0]
+$ bash -c '/home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-bearings-snapshot.sh' --json | jq -c '.contributions | {known,checked,complete,proven_clear}'
+{"known":1,"checked":1,"complete":true,"proven_clear":true}
+[exit 0]

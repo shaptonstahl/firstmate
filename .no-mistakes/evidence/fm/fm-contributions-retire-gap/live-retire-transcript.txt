@@ -1,0 +1,53 @@
+== S1: gone repo raises unavailable check and holds coverage incomplete
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh poll
+contributions: observation unavailable for https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/1
+[exit 0]
+$ jq -c .records[0]|{url,error,retired} /tmp/fm-lab.o3CzSq/data/gone/contributions.json
+{"url":"https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/1","error":"forge observation unavailable or changed during read","retired":null}
+[exit 0]
+$ bash -c '/home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-bearings-snapshot.sh' --json | jq -c '.contributions | {known,checked,complete,proven_clear}'
+{"known":1,"checked":0,"complete":false,"proven_clear":false}
+[exit 0]
+== S3 adversarial: bad actor / empty reason / unrecorded pair / missing reason
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh retire gone https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/1 robot repo deleted
+fm-contributions: invalid retire actor 'robot'; expected one of: captain, fleet
+[exit 1]
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh retire gone https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/1 captain 
+fm-contributions: retire needs a non-empty reason
+[exit 1]
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh retire gone https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/1 captain
+fm-contributions: retire needs task, URL, actor and reason
+[exit 1]
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh retire other https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/1 captain repo deleted
+fm-contributions: contribution is not recorded for this durable task
+[exit 1]
+== S2: retire with provenance
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh retire gone https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/1 captain repository deleted upstream (kunchenguid/firstmate#6641)
+[exit 0]
+$ jq -c .records[0]|{url,retired} /tmp/fm-lab.o3CzSq/data/gone/contributions.json
+{"url":"https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/1","retired":{"actor":"captain","reason":"repository deleted upstream (kunchenguid/firstmate#6641)","at":"2026-10-05T19:00:28Z"}}
+[exit 0]
+== S2: retire again keeps first provenance
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh retire gone https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/1 fleet second reason
+contributions: already retired https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/1 for gone
+[exit 0]
+$ jq -c .records[0].retired /tmp/fm-lab.o3CzSq/data/gone/contributions.json
+{"actor":"captain","reason":"repository deleted upstream (kunchenguid/firstmate#6641)","at":"2026-10-05T19:00:28Z"}
+[exit 0]
+== S2: poll after retire is silent; backlog link still present; coverage complete
+1
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh poll
+[exit 0]
+$ bash -c '/home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-bearings-snapshot.sh' --json | jq -c '.contributions | {known,checked,complete,proven_clear}'
+{"known":0,"checked":0,"complete":true,"proven_clear":true}
+[exit 0]
+== S4 adversarial: retire refused while a pending signal is unacknowledged
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh poll
+contributions: observation unavailable for https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/2
+[exit 0]
+$ /home/stephen/.no-mistakes/worktrees/b7f93037c9f2/01M46P135B2CEVF9R2M0YQYY0K/bin/fm-contributions.sh retire sig https://github.com/kunchenguid/fm-retire-probe-deleted-xyz/pull/2 fleet repo deleted
+fm-contributions: acknowledge pending signals before retiring this contribution
+[exit 1]
+$ jq -c .records[0]|{retired,pending:(.pending|length)} /tmp/fm-lab.o3CzSq/data/sig/contributions.json
+{"retired":null,"pending":1}
+[exit 0]
