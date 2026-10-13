@@ -1,0 +1,4 @@
+lock acquired: harness pid 3147716
+lock: held by live harness pid 3147716 (this session)
+--- no harness ancestry:
+lock: stale (pid 3147716 dead or not a harness)

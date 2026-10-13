@@ -1,0 +1,51 @@
+== fm-session-start.sh (read-only refusal) ==
+
+================================================================================
+SESSION START - /tmp/fm-lab.CvZrBS
+================================================================================
+
+LOCK
+--------------------------------------------------------------------------------
+error: another live firstmate session holds the lock (pid 3616679, session 25b1a108-4b32-4d93-8baf-3e172fe09bf8); operate read-only until resolved
+lock holder: Claude Code background session "task-cleanup-monitoring" (id 25b1a108, status idle, state working)
+lock holder: to end that session and free the lock, run: claude stop 25b1a108 (its conversation is kept; claude attach 25b1a108 resumes it)
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  READ-ONLY SESSION - FLEET LOCK OWNERSHIP WAS NOT VERIFIED
+●  error: another live firstmate session holds the lock (pid 3616679, session 25b1a108-4b32-4d93-8baf-3e172fe09bf8); operate read-only until resolved
+●  lock holder: Claude Code background session "task-cleanup-monitoring" (id 25b1a108, status idle, state working)
+●  lock holder: to end that session and free the lock, run: claude stop 25b1a108 (its conversation is kept; claude attach 25b1a108 resumes it)
+●  Skipping every mutating step: stale Herdr child cleanup,
+●  secondmate convergence, secondmate liveness, pending remote handoff retry,
+●  X-mode artifacts, fleet sync, and wake-queue drain. Detect-only bootstrap
+●  diagnostics and the rest of this read-only-safe digest still ran below.
+●  Operate read-only until this resolves - do not spawn, steer, merge, or
+●  otherwise mutate fleet state from this session.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BOOTSTRAP
+--------------------------------------------------------------------------------
+(silent - all good)
+
+WAKE QUEUE
+--------------------------------------------------------------------------------
+skipped (read-only session) - 0 record(s) remain queued because this session lacks verified fleet-lock ownership.
+================================================================================
+SUPERVISION OPERATING INSTRUCTIONS - primary harness: claude
+================================================================================
+Current state:
+- Lock: read-only; do not drain, arm, spawn, steer, merge, or repair fleet state here.
+- Away/quiet mode: inactive.
+- X mode: inactive; use the default watcher cadence.
+- Supervision host: on; it takes away-posture wakes and, where the dialog mirror is verified, eligible attended wakes itself, and hands the rest to you (protocol at the end of this block).
+- Ordinary wake: the Stop-owned auto-arm (bin/fm-claude-stop-autoarm.sh) already owns watcher continuity; drain and handle the wake, and do not arm another cycle yourself.
+
+
+== fm-lock.sh status ==
+lock: held by live harness pid 3616679 (another session; session 25b1a108-4b32-4d93-8baf-3e172fe09bf8)
+lock holder: Claude Code background session "task-cleanup-monitoring" (id 25b1a108, status idle, state working)
+lock holder: to end that session and free the lock, run: claude stop 25b1a108 (its conversation is kept; claude attach 25b1a108 resumes it)
+== fm-lock.sh acquire ==
+error: another live firstmate session holds the lock (pid 3616679, session 25b1a108-4b32-4d93-8baf-3e172fe09bf8); operate read-only until resolved
+lock holder: Claude Code background session "task-cleanup-monitoring" (id 25b1a108, status idle, state working)
+lock holder: to end that session and free the lock, run: claude stop 25b1a108 (its conversation is kept; claude attach 25b1a108 resumes it)
+rc=1

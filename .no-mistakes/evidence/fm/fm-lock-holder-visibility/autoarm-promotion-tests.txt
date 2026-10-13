@@ -1,0 +1,3 @@
+ok - auto-arm: a promotion notice survives a refused rewake commit and rides the next committed rewake
+ok - auto-arm: re-anchoring this session's own lock records no promotion notice
+ok - auto-arm: a pending promotion notice for a lock this session does not hold is dropped unprinted

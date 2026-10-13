@@ -1,0 +1,32 @@
+Note: switching to '76cd2f93a331ed9821ff92cb3d6dec4dbd5007fb'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+claude rc=0
+== SessionStart digest LOCK section ==
+jq: parse error: Invalid numeric literal at line 1, column 8
+== Stop hook feedback delivered to the model ==
+jq: parse error: Invalid numeric literal at line 1, column 8
+== model replies ==
+jq: parse error: Invalid numeric literal at line 1, column 8
+== notice count in feedback ==
+jq: parse error: Invalid numeric literal at line 1, column 8
+0
+== final state ==
+lock=2788642 holder(dead)=2788635 pending-notice-file: present
+arm-run=1 pid=2795538
+arm-run=2 pid=2795705
+epoch outcome=clean
