@@ -1,0 +1,24 @@
+== data/captain.md
+# Captain preferences
+<!-- memory tiers: see the stow skill -->
+
+- Captain prefers terse status lines. <!--a:2026-10-01-->
+
+## Memory layering
+
+| Tier | Destination | Authoritative for | Correction rule |
+|---|---|---|---|
+| Vaultstore | MCP tools prefixed `mcp__vaultstore__` | decisions, hypotheses, corrections | append-only, supersede never edit |
+| local | this home's `data/` | everything else; per-machine cache only | edit in place |
+== data/learnings.md
+# Learnings
+<!-- memory tiers: see the stow skill -->
+
+- Decided 2026-09-20 to keep lab build artifacts under /tmp only. <!--a:2026-09-20--><!--t:Vaultstore-->
+- Decided 2026-10-12: run lab smoke tests in this home only on weekends. <!--a:2026-10-12--><!--t:Vaultstore-->
+== data listing
+total 16
+drwxrwxr-x 2 stephen stephen 4096 Oct 12 23:20 .
+drwx------ 7 stephen stephen 4096 Oct 12 23:20 ..
+-rw-rw-r-- 1 stephen stephen  442 Oct 12 23:21 captain.md
+-rw-rw-r-- 1 stephen stephen  272 Oct 12 23:21 learnings.md

@@ -1,0 +1,50 @@
+
+  You are here: 2026-10-12, 23:20 EDT, host wildrobot, Linux 7.0.0-38. Lab home /tmp/fm-lab.H36CWL. Nothing was written outside it, and Palimpsest and OpenBrain were not used.
+
+  Stow receipt
+
+  Startup-memory budget: I couldn't measure it. The budget check stops with an error because this lab home has no budget setting, and it won't assume a default. I skipped the normal session start,
+  which is what would have created that setting. So the budget, the before total and the after total are all unknown. My rough estimate is that the after total is under 200 tokens, but the check has
+  not confirmed that.
+
+  Per-file actions
+  - data/captain.md: rewritten. I added the one-line note pointing to this skill for the memory rules. The "terse status lines" entry is unchanged: nothing this session showed it again, and at 11 days
+    old it is well inside its 30-day limit.
+  - data/captain-shared.md: unchanged. The file doesn't exist, which means no shared captain preferences. I created nothing.
+  - data/learnings.md: added and rewritten.
+    - Added: "Decided 2026-10-12: run lab smoke tests in this home only on weekends."
+    - Rewritten: added the skill note. The /tmp build-artifacts entry was waiting on a memory store called "Archivist", which this home no longer declares. I pointed it at "Vaultstore" instead, since
+      Vaultstore is declared as the owner of decisions.
+  - Nothing was archived. Neither dated entry was past its age limit, so data/memory-archive.md was not created. Nothing was offloaded or proposed for offload, because without a budget there was
+    nothing to relieve.
+
+  Findings filed outside memory: none.
+
+  Waiting on a memory store this session couldn't reach: this home declares Vaultstore (mcp__vaultstore__ tools) as the owner of decisions. Those tools aren't available in this session, so both
+  decisions sit in data/learnings.md, marked as waiting for Vaultstore:
+  - the new weekend-only smoke-test decision
+  - the 2026-09-20 decision to keep lab build artifacts under /tmp
+
+  A later session with Vaultstore access should save both there and then clear the markers. Until then the stow rules stop them from being archived, evicted or offloaded.
+
+  Unresolved exceptions
+  1. No budget setting (config/startup-memory-budget), so the budget check can't run.
+  2. Two decisions are not yet saved to Vaultstore, as above.
+
+  Second mates: none registered, so nothing was passed on to other homes.
+
+  Open records: the only open item I'm holding is the weekend smoke-test decision. It is a standing rule rather than a task, so it went to memory, not the backlog. I didn't change or leave aside any
+  other record. I only checked records this session touched; I didn't compare the home's records against anything else.
+
+  Safe to reset: no. That needs a budget result within limits and both decisions saved to Vaultstore. "Safe to reset" would mean nothing this session knew is lost; it says nothing about whether the
+  home's other records are correct.
+
+  Decision for you: do you want this lab home to have a budget setting? Running the normal startup once would create the default, or you could set one by hand. After that, a re-run of /stow would
+  confirm the budget. The Vaultstore gap still needs a session that has those tools.
+
+✻ Churned for 37s · done 11:21 PM
+                                                                                                                                                                               Now using usage credits
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle) · ← for agents

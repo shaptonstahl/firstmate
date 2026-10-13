@@ -1,0 +1,8 @@
+== data/captain.md
+# Captain preferences
+<!-- memory tiers: see the stow skill -->
+
+- Captain prefers terse status lines. <!--a:2026-10-01-->
+- Lab smoke tests in this home run only on weekends (standing decision, 2026-10-12).
+== data/learnings.md
+cat: /tmp/fm-lab.kvlJZx/data/learnings.md: No such file or directory

@@ -1,0 +1,50 @@
+  Stow receipt - lab home (primary, 2026-10-12)
+                                                                                                                                                                                                      ✕
+  Memory size limit: not checked. The size-check script stopped with invalid config/startup-memory-budget -
+  file is absent. That setting is normally created by the session-start routine, which this session skipped.
+  The skill forbids assuming the 7500-token default, so I did not create the setting. There is no official
+  size total for before or after the pass.
+  - For your information only, using the documented rule (bytes ÷ 3, rounded up): data/captain.md went from 81
+    bytes (~27 tokens) to 208 bytes (~70 tokens). The other two memory files don't exist.
+
+  Actions per file:
+  - data/captain.md - rewritten, added
+    - Rewritten: added the required one-line header pointing to the stow skill as the owner of the memory-tier
+      rules.
+    - Added: Lab smoke tests in this home run only on weekends (standing decision, 2026-10-12). It is a
+      standing captain decision for this home, so it stays permanently with no expiry marker.
+    - Left alone: Captain prefers terse status lines. <!--a:2026-10-01-->. Nothing in this session confirmed
+      it, so I didn't refresh its date. It's 11 days old, well short of the 30-day review point.
+  - data/captain-shared.md - unchanged (doesn't exist; this is the main home, so nothing is inherited).
+  - data/learnings.md - unchanged (doesn't exist; no new operational facts needed it).
+
+  External memory stores: none are declared in this home, so the local files are the only owners. Nothing is
+  waiting to be copied to an unreachable store. Palimpsest and OpenBrain were not used, as instructed.
+
+  Saved outside memory: nothing. "Skip session start and the memory tools" applied to this session only, so I                                  No changes this session
+  didn't save it.
+
+  Archived, offloaded, or proposed for offload: none. There was no stale material, and the size limit can't be
+  checked without the setting.
+
+  Second mates: none registered, so nothing was passed down to other homes.
+
+  Open work: none was held in this session, so nothing was filed or corrected. The weekend rule is a standing
+  decision, not a task.
+
+  Unresolved exception: the missing size-limit setting. Either run the normal session start in this home,
+  which creates the 7500 default, or tell me a value to put in config/startup-memory-budget. Then rerun /stow
+  to get a real size check.
+
+  Reset-safe: No. Everything this session knew is on disk, so nothing would be lost. The pass is still
+  incomplete because the size check never ran. Reset-safe would only mean that nothing this session knew has
+  been lost; it would not mean the home's records were checked as correct.
+
+  All writes stayed under $FM_HOME. The repository working tree is unchanged.
+
+✻ Cogitated for 34s · done 11:22 PM
+                                                                                                                                                                               Now using usage credits
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ bypass permissions on (shift+tab to cycle) · ← for agents
