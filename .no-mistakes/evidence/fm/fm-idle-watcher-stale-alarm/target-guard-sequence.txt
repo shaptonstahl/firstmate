@@ -1,0 +1,25 @@
+registered: state/contributions.check.sh
+### idle checks-only, fm-wake-drain.sh (locked path)
+(no watcher-down alarm)
+marker: absent
+### idle checks-only, fm-guard.sh
+(no watcher-down alarm)
+marker: absent
+### check + X relay shim present, fm-guard.sh
+●  WATCHER DOWN - SUPERVISION IS OFF
+marker: stale-beacon
+### relay removed -> idle again (episode must end)
+(no watcher-down alarm)
+marker: absent
+### task dispatched onto still-down watcher (must re-alarm in full)
+●  WATCHER DOWN - SUPERVISION IS OFF
+marker: stale-beacon
+### same episode next call (reminder)
+WARNING: watcher still down (same stale episode; last beat: 163808s ago, grace 300s) - full banner already printed this episode.
+marker: stale-beacon
+### task done -> idle checks-only
+(no watcher-down alarm)
+marker: absent
+### no checks, nothing needed
+(no watcher-down alarm)
+marker: absent

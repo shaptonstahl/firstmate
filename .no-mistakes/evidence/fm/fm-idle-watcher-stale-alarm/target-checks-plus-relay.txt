@@ -1,0 +1,13 @@
+=== [target] lab=/tmp/fm-lab.acXmc8 extra=relay
+--- arm background contributions check via fm-contributions.sh arm
+registered: state/contributions.check.sh
+arm rc=0
+contributions.check.sh
+contributions.check-trust
+--- beacon: 2026-10-13 01:00:00.000000000 -0400
+--- fm-session-start.sh (session start after break), grep for alarm lines:
+session-start rc=0
+39:3. On a `Stop hook feedback` wake (`signal:`, `stale:`, `check:`, or `heartbeat`), run `bin/fm-wake-drain.sh` first and handle the wake.
+--- second guarded call: fm-guard.sh direct
+(guard silent on watcher)
+--- episode marker: absent
